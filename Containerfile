@@ -3,7 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM ghcr.io/ublue-os/bluefin-nvidia:stable
+FROM quay.io/fedora/fedora-silverblue:43
 
 
 ### [IM]MUTABLE /opt
