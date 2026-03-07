@@ -23,7 +23,9 @@ dnf5 install -y golang \
 dnf5 install -y cargo \
                 rustc
 
-### Rust
-dnf5 install -y zsh
+### Tools
+dnf5 install -y fd-find \
+                ripgrep \
+                zsh
 
 systemctl enable podman.socket
