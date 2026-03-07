@@ -33,7 +33,9 @@ dnf5 install -y temurin-25-jdk
 
 ### Python
 dnf5 install -y black \
-                python3-isort
+                python3-isort \
+                python3-pyflakes \
+                python3-pytest
 
 ### Rust
 dnf5 install -y cargo \
