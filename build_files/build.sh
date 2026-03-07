@@ -40,15 +40,13 @@ dnf5 install -y temurin-25-jdk
 
 ### Python
 dnf5 install -y black \
-                pipenv \
+                pipx \
+                poetry \
                 python3-isort \
-                python3-nose \
                 python3-pip \
                 python3-pyflakes \
                 python3-pytest
-
-pip install --no-cache-dir pipenv
-
+                
 ### Rust
 dnf5 install -y cargo \
                 rust-analyzer \
