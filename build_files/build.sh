@@ -27,13 +27,6 @@ dnf5 install -y emacs-pgtk
 dnf5 install -y golang \
                 gopls
 
-export GOPATH=/tmp/go
-go install github.com/cweill/gotests/gotests@latest
-go install github.com/fatih/gomodifytags@latest
-go install github.com/x-motemen/gore/cmd/gore@latest
-mv /tmp/go/bin/* /usr/local/bin/
-rm -rf /tmp/go
-
 ### Java
 cat <<'EOF' > /etc/yum.repos.d/adoptium.repo
 [Adoptium]
