@@ -19,12 +19,24 @@ dnf5 install -y emacs-pgtk
 dnf5 install -y golang \
                 gopls
 
+### Python
+dnf5 install -y black \
+                python3-isort
+
 ### Rust
 dnf5 install -y cargo \
+                rust-analyzer \
                 rustc
 
+### Shell
+dnf5 install -y ShellCheck \
+                shfmt
+
 ### Tools
-dnf5 install -y fd-find \
+dnf5 install -y ansible \
+                direnv \
+                fd-find \
+                kubectl \
                 ripgrep \
                 zsh
 
