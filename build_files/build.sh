@@ -10,6 +10,7 @@ rm 1password-latest.rpm
 ### C
 dnf5 install -y clang \
                 clang-tools-extra \
+                glslang \
                 make
 
 ### Emacs
@@ -18,6 +19,17 @@ dnf5 install -y emacs-pgtk
 ### Go
 dnf5 install -y golang \
                 gopls
+
+### Java
+cat <<'EOF' > /etc/yum.repos.d/adoptium.repo
+[Adoptium]
+name=Adoptium
+baseurl=https://packages.adoptium.net/artifactory/rpm/fedora/\$releasever/\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
+EOF
+dnf5 install -y temurin-25-jdk
 
 ### Python
 dnf5 install -y black \
