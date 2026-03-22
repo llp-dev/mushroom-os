@@ -18,5 +18,4 @@ jobs:
           package-name: mushroom-os
           package-type: container
           min-versions-to-keep: 3
-          num-old-versions-to-delete: 50
           token: '${{ secrets.GITHUB_TOKEN }}'
