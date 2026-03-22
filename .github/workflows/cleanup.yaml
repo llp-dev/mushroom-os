@@ -1,17 +1,22 @@
----
 name: Cleanup old images
 
-on:
+'on':
   schedule:
-    - cron: "0 1 * * 0"
+    - cron: 0 1 * * 0
+  workflow_dispatch: null
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
+
+    permissions:
+      packages: write
+
     steps:
       - uses: actions/delete-package-versions@v5
         with:
           package-name: mushroom-os
           package-type: container
           min-versions-to-keep: 3
-          delete-only-untagged-versions: false
+          num-old-versions-to-delete: 50
+          token: '${{ secrets.GITHUB_TOKEN }}'
