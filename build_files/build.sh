@@ -36,7 +36,6 @@ dnf5 install -y 1password \
                 black \
                 btop \
                 cargo \
-                chezmoi \
                 clang \
                 clang-tools-extra \
                 direnv \
@@ -72,6 +71,7 @@ dnf5 install -y 1password \
                 screen \
                 ShellCheck \
                 shfmt \
+                stow \
                 temurin-25-jdk \
                 terraform \
                 unzip \
