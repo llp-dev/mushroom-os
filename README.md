@@ -25,7 +25,7 @@ from the Universal Blue project.
 ### Rebase from an existing Fedora Atomic or Universal Blue image
 
 ```bash
-sudo bootc switch --enforce-container-sigpolicy ghcr.io/llp-devr/mushroom-os:latest
+sudo bootc switch --enforce-container-sigpolicy ghcr.io/llp-dev/mushroom-os:latest
 ```
 
 ### Fresh system installation:
