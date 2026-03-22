@@ -36,6 +36,7 @@ dnf5 install -y 1password \
                 black \
                 btop \
                 cargo \
+                chezmoi \
                 clang \
                 clang-tools-extra \
                 direnv \
@@ -55,6 +56,7 @@ dnf5 install -y 1password \
                 markdown \
                 make \
                 neovim \
+                opentofu \
                 pandoc \
                 podman-compose \
                 podman-docker \
