@@ -24,7 +24,7 @@ gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
 EOF
 
 # Mise (COPR)
-dnf5 copr enable jdxcode/mise
+dnf5 copr enable -y jdxcode/mise
 
 dnf5 install -y 1password \
   7zip \
