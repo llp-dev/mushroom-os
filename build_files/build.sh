@@ -13,16 +13,6 @@ gpgcheck=1
 gpgkey=https://downloads.1password.com/linux/keys/1password.asc
 EOF
 
-# Adoptium (Java)
-cat <<'EOF' >/etc/yum.repos.d/adoptium.repo
-[Adoptium]
-name=Adoptium
-baseurl=https://packages.adoptium.net/artifactory/rpm/fedora/$releasever/$basearch
-enabled=1
-gpgcheck=1
-gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
-EOF
-
 # RPM Fusion
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm
 sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm
@@ -30,41 +20,45 @@ sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfr
 # Mise (COPR)
 dnf5 copr enable -y jdxcode/mise
 
-dnf5 install -y @virtualization
+dnf5 group install --assumeyes admin-tools
+dnf5 group install --assumeyes --with-optional c-development
+dnf5 group install --assumeyes cloud-management
+dnf5 group install --assumeyes --with-optional container-management 
+dnf5 group install --assumeyes --with-optional development-libs
+dnf5 group install --assumeyes firefox
+dnf5 group install --assumeyes fonts
+dnf5 group install --assumeyes java
+dnf5 group install --assumeyes --with-optional java-development 
+dnf5 group install --assumeyes --with-optional printing
+dnf5 group install --assumeyes system-tools
+dnf5 group install --assumeyes --with-optional virtualization-headless
+dnf5 group install --assumeyes vlc
 
-dnf5 install -y 1password \
+dnf5 install --assumeyes \
   7zip \
   bat \
   black \
-  btop \
   cargo \
-  clang \
-  clang-tools-extra \
   fd-find \
   fzf \
-  gcc \
   git \
   golang \
   gopls \
   glslang \
-  htop \
   jq \
+  kernel-devel \
+  kernel-headers \
   markdown \
-  make \
   mise \
   pandoc \
-  podman-compose \
-  podman-docker \
   python3-isort \
   python3-pip \
   python3-pyflakes \
   python3-pytest \
   ripgrep \
   rustc \
-  screen \
   ShellCheck \
   stow \
-  temurin-25-jdk \
   unzip \
   wl-clipboard \
   zip \
