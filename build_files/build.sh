@@ -36,6 +36,7 @@ dnf5 group install --assumeyes vlc
 
 dnf5 install --assumeyes \
   7zip \
+  akmod-nvidia \
   bat \
   black \
   cargo \
@@ -61,8 +62,13 @@ dnf5 install --assumeyes \
   stow \
   unzip \
   wl-clipboard \
+  xorg-x11-drv-nvidia-cuda \
   zip \
   zsh
+
+### akmod-nvidia
+KVER=$(rpm -q kernel-devel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}\n' | head -n 1)
+akmods --force --kernels "$KVER"
 
 ### Cleanup
 dnf5 clean all
