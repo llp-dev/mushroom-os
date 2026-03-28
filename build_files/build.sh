@@ -23,8 +23,14 @@ gpgcheck=1
 gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
 EOF
 
+# NVIDIA
+dnf5 config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/fedora43/x86_64/cuda-fedora43.repo
+sudo dnf config-manager setopt cuda-fedora43-$(uname -m).exclude=nvidia-driver,nvidia-modprobe,nvidia-persistenced,nvidia-settings,nvidia-libXNVCtrl,nvidia-xconfig
+
 # Mise (COPR)
 dnf5 copr enable -y jdxcode/mise
+
+dnf5 clean expire-cache
 
 dnf5 install -y @virtualization
 
@@ -36,6 +42,7 @@ dnf5 install -y 1password \
   cargo \
   clang \
   clang-tools-extra \
+  cuda-toolkit \
   fd-find \
   fzf \
   gcc \
@@ -45,6 +52,8 @@ dnf5 install -y 1password \
   glslang \
   htop \
   jq \
+  kernel-devel \
+  kernel-headers \
   markdown \
   make \
   mise \
@@ -63,15 +72,18 @@ dnf5 install -y 1password \
   temurin-25-jdk \
   unzip \
   wl-clipboard \
+  xorg-x11-drv-nvidia-cuda \
   zip \
   zsh
+
+dkms autoinstall -k "$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 ### Cleanup
 dnf5 clean all
 rm -rf /var/cache/dnf
 
 ### Config
-cat <<'EOF' >/etc/profile.d/local-bin.sh
+tee /etc/profile.d/local-bin.sh <<'EOF'
 # Ensure /usr/local/bin is in the PATH for all users
 case ":${PATH}:" in
     *:/usr/local/bin:*) ;;
@@ -79,6 +91,10 @@ case ":${PATH}:" in
 esac
 EOF
 chmod 644 /etc/profile.d/local-bin.sh
+
+tee /usr/lib/bootc/kargs.d/00-nvidia.toml <<'EOF'
+kargs = ["rd.driver.blacklist=nouveau", "modprobe.blacklist=nouveau", "nvidia-drm.modeset=1", "initcall_blacklist=simpledrm_platform_driver_init"]
+EOF
 
 ### Enable Services
 systemctl enable podman.socket
