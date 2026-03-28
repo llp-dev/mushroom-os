@@ -3,11 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM quay.io/fedora/fedora-silverblue:43
-
-
-### [IM]MUTABLE /opt
-RUN rm /opt && mkdir /opt
+FROM quay.io/fedora/fedora-bootc:43
 
 ### MODIFICATIONS
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
