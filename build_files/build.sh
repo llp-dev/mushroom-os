@@ -26,16 +26,16 @@ EOF
 # Mise (COPR)
 dnf5 copr enable -y jdxcode/mise
 
+dnf5 install -y @virtualization
+
 dnf5 install -y 1password \
   7zip \
-  ansible \
   bat \
   black \
   btop \
   cargo \
   clang \
   clang-tools-extra \
-  direnv \
   fd-find \
   fzf \
   gcc \
@@ -43,29 +43,22 @@ dnf5 install -y 1password \
   golang \
   gopls \
   glslang \
-  helm \
   htop \
   jq \
   markdown \
   make \
   mise \
-  neovim \
-  opentofu \
   pandoc \
   podman-compose \
   podman-docker \
-  pipx \
-  poetry \
   python3-isort \
   python3-pip \
   python3-pyflakes \
   python3-pytest \
   ripgrep \
-  rust-analyzer \
   rustc \
   screen \
   ShellCheck \
-  shfmt \
   stow \
   temurin-25-jdk \
   unzip \
@@ -87,4 +80,6 @@ esac
 EOF
 chmod 644 /etc/profile.d/local-bin.sh
 
+### Enable Services
 systemctl enable podman.socket
+systemctl enable libvirtd
