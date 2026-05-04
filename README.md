@@ -1,17 +1,17 @@
 # Mushroom OS 🍄
 
-A personal Linux image based on Fedora 43 Atomic, built with bootc and derived
-from the Universal Blue project.
+A personal Linux image based on Fedora 44, built on the bootc-native
+`fedora-bootc` base.
 
 ## Stack
 
-| Layer        | Tech             |
-| ------------ | ---------------- |
-| Distribution | Fedora 43 Atomic |
-| Base image   | Universal Blue   |
-| Build system | bootc            |
-| Desktop      | GNOME            |
-| GPU          | NVIDIA           |
+| Layer        | Tech                       |
+| ------------ | -------------------------- |
+| Distribution | Fedora 44                  |
+| Base image   | quay.io/fedora/fedora-bootc |
+| Build system | bootc                      |
+| Desktop      | GNOME                      |
+| GPU          | NVIDIA                     |
 
 ## Base packages
 
@@ -30,13 +30,13 @@ sudo bootc switch --enforce-container-sigpolicy ghcr.io/llp-dev/mushroom-os:late
 
 ### Fresh system installation:
 
-1. Install a Universal Blue base image (e.g., Bazzite ISO).
+1. Install any Fedora Atomic / bootc-capable base (e.g., Bazzite ISO, Silverblue).
 2. Rebase using the command above
 
 ## References
 
-- [Universal Blue](https://universal-blue.org/) — OCI-based Fedora immutable desktops
 - [bootc](https://containers.github.io/bootc/) — bootable OCI containers
+- [fedora-bootc](https://docs.fedoraproject.org/en-US/bootc/) — Fedora's bootc base image
 - [Fedora Atomic](https://fedoraproject.org/atomic-desktops/) — immutable Fedora variants
 - [Bazzite](https://bazzite.gg/) — Universal Blue image for fresh installs
 - [Emacs](https://www.gnu.org/software/emacs/)
