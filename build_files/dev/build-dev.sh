@@ -57,6 +57,7 @@ dnf5 install -y \
   fd-find \
   fzf \
   gh \
+  git-delta \
   glslang \
   google-chrome-stable \
   htop \
