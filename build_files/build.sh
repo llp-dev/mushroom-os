@@ -38,10 +38,8 @@ dnf5 install -y 'dnf5-command(copr)'
 dnf5 copr enable -y jdxcode/mise
 dnf5 copr enable -y atim/starship
 
-# Desktop + virtualization
-# fedora-bootc is CLI-only; pull in the full GNOME workstation environment
-# to match the previous Silverblue base.
-dnf5 install -y @workstation-product-environment @virtualization
+# Virtualization (Silverbase already ships GNOME — @workstation-product-environment is redundant)
+dnf5 install -y @virtualization
 
 # NVIDIA proprietary stack (Optimus: Intel Iris Xe + GTX 1650 Mobile, Turing).
 #
@@ -89,7 +87,6 @@ dnf5 install -y 1password \
   gcc \
   git \
   glslang \
-  gnome-extensions-app \
   gnome-tweaks \
   golang \
   google-noto-emoji-fonts \
@@ -113,7 +110,6 @@ dnf5 install -y 1password \
   starship \
   stow \
   temurin-25-jdk \
-  toolbox \
   unzip \
   virt-manager \
   wl-clipboard \
