@@ -17,24 +17,26 @@ EOF
 cat <<'EOF' >/etc/yum.repos.d/adoptium.repo
 [Adoptium]
 name=Adoptium
-baseurl=https://packages.adoptium.net/artifactory/rpm/fedora/$releasever/$basearch
+baseurl=https://packages.adoptium.net/artifactory/rpm/rhel/$releasever/$basearch
 enabled=1
 gpgcheck=1
 gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
 EOF
 
-# RPM Fusion
-sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-44.noarch.rpm
-sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-44.noarch.rpm
+# Negativo17 NVIDIA driver (pre-built kmod + userspace)
+dnf config-manager --add-repo=https://negativo17.org/repos/epel-nvidia.repo
 
-# Mise (COPR)
-dnf5 copr enable -y jdxcode/mise
+# EPEL (extra packages)
+dnf install -y epel-release
 
-dnf5 install -y @virtualization
+dnf install -y @virtualization
 
-dnf5 install -y kernel-devel-matched \
-  xorg-x11-drv-nvidia \
-  xorg-x11-drv-nvidia-power \
+dnf install -y kmod-nvidia \
+  nvidia-driver \
+  nvidia-driver-libs \
+  nvidia-settings \
+  nvidia-modprobe \
+  nvidia-persistenced \
   1password \
   7zip \
   bat \
@@ -54,7 +56,6 @@ dnf5 install -y kernel-devel-matched \
   jq \
   markdown \
   make \
-  mise \
   pandoc \
   podman-compose \
   podman-docker \
@@ -74,7 +75,7 @@ dnf5 install -y kernel-devel-matched \
   zsh
 
 ### Cleanup
-dnf5 clean all
+dnf clean all
 rm -rf /var/cache/dnf
 
 ### Config
