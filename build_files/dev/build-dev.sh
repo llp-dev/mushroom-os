@@ -62,6 +62,7 @@ dnf5 install -y \
   neovim \
   pandoc \
   ripgrep \
+  rustfmt \
   screen \
   ShellCheck \
   starship \
