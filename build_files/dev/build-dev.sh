@@ -32,6 +32,9 @@ dnf5 copr enable -y atim/starship
 # Lazygit (COPR)
 dnf5 copr enable -y dejan/lazygit
 
+# k6 (GitHub release RPM — pinned; bump version below to upgrade)
+K6_RPM_URL="https://github.com/grafana/k6/releases/download/v1.7.1/k6-v1.7.1-linux-amd64.rpm"
+
 # Declare 1Password's system groups via sysusers.d so they're carried
 # declaratively in the image (bootc lint flags raw /etc/group entries
 # without a sysusers.d source) and re-materialized on the host by
@@ -61,6 +64,7 @@ dnf5 install -y \
   glslang \
   google-chrome-stable \
   htop \
+  "$K6_RPM_URL" \
   lazygit \
   markdown \
   mise \
