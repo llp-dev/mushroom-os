@@ -57,6 +57,7 @@ dnf5 install -y \
   7zip \
   bat \
   btop \
+  compat-lua \
   fd-find \
   fzf \
   gh \
@@ -66,6 +67,9 @@ dnf5 install -y \
   htop \
   "$K6_RPM_URL" \
   lazygit \
+  lua \
+  luajit \
+  luarocks \
   markdown \
   mise \
   neovim \
