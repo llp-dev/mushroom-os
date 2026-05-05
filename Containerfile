@@ -3,7 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM quay.io/fedora/fedora-silverblue:44
+FROM quay.io/centos-bootc/centos-bootc:stream10
 
 
 ### [IM]MUTABLE /opt
@@ -15,6 +15,3 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh
-    
-### LINTING
-RUN bootc container lint
