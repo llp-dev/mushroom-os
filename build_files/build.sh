@@ -75,6 +75,10 @@ dnf install -y kmod-nvidia \
   zsh
 
 ### Cleanup
+
+# GNOME Desktop
+dnf groupinstall -y "Workstation"
+
 dnf clean all
 rm -rf /var/cache/dnf
 
@@ -91,5 +95,4 @@ chmod 644 /etc/profile.d/local-bin.sh
 ### Enable Services
 systemctl enable podman.socket
 systemctl enable libvirtd
-systemctl enable nvidia-powerd
 systemctl enable nvidia-persistenced
