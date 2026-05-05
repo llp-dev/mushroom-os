@@ -1,45 +1,48 @@
 # Mushroom OS 🍄
 
-A personal Linux image based on Fedora 43 Atomic, built with bootc and derived
-from the Universal Blue project.
+A personal [bootc](https://containers.github.io/bootc/) OCI image based on
+Fedora 44 Silverblue. Published as `ghcr.io/llp-dev/mushroom-os:latest` and
+signed with cosign (`cosign.pub`). Consumed via `bootc switch`.
 
-## Stack
+## What it is
 
-| Layer        | Tech             |
-| ------------ | ---------------- |
-| Distribution | Fedora 43 Atomic |
-| Base image   | Universal Blue   |
-| Build system | bootc            |
-| Desktop      | GNOME            |
-| GPU          | NVIDIA           |
+GNOME desktop on Fedora 44 Silverblue with NVIDIA support
+(`kmod-nvidia-open` compiled from upstream against the base's exact
+kernel) plus a dev-focused package set. The full package list lives in
+`build_files/build.sh`.
 
-## Base packages
+## Install
 
-- Emacs
-- Gnome
-- VLC
-- Zsh
-
-## Installation
-
-### Rebase from an existing Fedora Atomic or Universal Blue image
+From any Fedora bootc-capable host (Silverblue 44+, Kinoite, etc.):
 
 ```bash
-sudo bootc switch --enforce-container-sigpolicy ghcr.io/llp-devr/mushroom-os:latest
+sudo bootc switch --enforce-container-sigpolicy ghcr.io/llp-dev/mushroom-os:latest
+sudo systemctl reboot
 ```
 
-### Fresh system installation:
+For a fresh system: install any [Fedora Atomic](https://fedoraproject.org/atomic-desktops/)
+desktop or a [Universal Blue](https://universal-blue.org/) image
+(e.g. [Bazzite](https://bazzite.gg/)), finish the installer, then run the
+command above.
 
-1. Install a Universal Blue base image (e.g., Bazzite ISO).
-2. Rebase using the command above
+After first boot, opt your user into 1Password's CLI / browser integration:
 
-## References
+```bash
+sudo usermod -a -G onepassword,onepassword-cli "$USER"
+```
 
-- [Universal Blue](https://universal-blue.org/) — OCI-based Fedora immutable desktops
-- [bootc](https://containers.github.io/bootc/) — bootable OCI containers
-- [Fedora Atomic](https://fedoraproject.org/atomic-desktops/) — immutable Fedora variants
-- [Bazzite](https://bazzite.gg/) — Universal Blue image for fresh installs
-- [Emacs](https://www.gnu.org/software/emacs/)
-- [VLC](https://www.videolan.org/vlc/)
-- [Zsh](https://www.zsh.org/)
-- [GNOME](https://www.gnome.org/)
+(then log out and back in).
+
+## Build locally
+
+```bash
+make build    # build the OCI image with podman
+make lint     # shellcheck on build scripts
+make format   # shfmt on build scripts
+```
+
+There is no local VM / disk-image / ISO build path; test boot on a real
+bootc host or a separately-provisioned VM.
+
+CI builds on push, PR, and a schedule; on `main` it pushes to GHCR and
+signs with cosign. Tags: `latest`, `latest.YYYYMMDD`, `YYYYMMDD`.
