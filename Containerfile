@@ -3,7 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM quay.io/fedora/fedora-silverblue:43
+FROM quay.io/fedora/fedora-silverblue:44
 
 
 ### [IM]MUTABLE /opt
