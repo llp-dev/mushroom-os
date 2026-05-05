@@ -24,15 +24,18 @@ gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
 EOF
 
 # RPM Fusion
-sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm
-sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm
+sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-44.noarch.rpm
+sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-44.noarch.rpm
 
 # Mise (COPR)
 dnf5 copr enable -y jdxcode/mise
 
 dnf5 install -y @virtualization
 
-dnf5 install -y 1password \
+dnf5 install -y kmod-nvidia-open \
+  xorg-x11-drv-nvidia \
+  xorg-x11-drv-nvidia-power \
+  1password \
   7zip \
   bat \
   black \
@@ -87,3 +90,5 @@ chmod 644 /etc/profile.d/local-bin.sh
 ### Enable Services
 systemctl enable podman.socket
 systemctl enable libvirtd
+systemctl enable nvidia-powerd
+systemctl enable nvidia-persistenced
