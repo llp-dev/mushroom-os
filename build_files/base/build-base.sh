@@ -32,6 +32,7 @@ dnf5 install -y \
   clang-tools-extra \
   gcc \
   git \
+  glx-utils \
   gnome-tweaks \
   golang \
   gopls \
