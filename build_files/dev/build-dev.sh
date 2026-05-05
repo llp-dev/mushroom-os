@@ -29,6 +29,9 @@ dnf5 copr enable -y jdxcode/mise
 # Starship (COPR)
 dnf5 copr enable -y atim/starship
 
+# Lazygit (COPR)
+dnf5 copr enable -y dejan/lazygit
+
 # Declare 1Password's system groups via sysusers.d so they're carried
 # declaratively in the image (bootc lint flags raw /etc/group entries
 # without a sysusers.d source) and re-materialized on the host by
@@ -57,6 +60,7 @@ dnf5 install -y \
   glslang \
   google-chrome-stable \
   htop \
+  lazygit \
   markdown \
   mise \
   neovim \
