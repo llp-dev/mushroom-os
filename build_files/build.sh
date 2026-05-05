@@ -32,7 +32,7 @@ dnf5 copr enable -y jdxcode/mise
 
 dnf5 install -y @virtualization
 
-dnf5 install -y kmod-nvidia-open \
+dnf5 install -y kernel-devel-matched \
   xorg-x11-drv-nvidia \
   xorg-x11-drv-nvidia-power \
   1password \
