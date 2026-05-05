@@ -55,6 +55,7 @@ dnf5 install -y \
   htop \
   markdown \
   mise \
+  neovim \
   pandoc \
   ripgrep \
   screen \
