@@ -37,6 +37,7 @@ dnf5 install -y \
   golang \
   gopls \
   jq \
+  libstdc++-static \
   make \
   podman-compose \
   podman-docker \

@@ -59,6 +59,7 @@ dnf5 install -y \
   btop \
   compat-lua \
   fd-find \
+  fontconfig-devel \
   fzf \
   gh \
   git-delta \
@@ -67,6 +68,13 @@ dnf5 install -y \
   htop \
   "$K6_RPM_URL" \
   lazygit \
+  libX11-devel \
+  libXcursor-devel \
+  libXext-devel \
+  libXfixes-devel \
+  libXft-devel \
+  libXinerama-devel \
+  libXrender-devel \
   lua \
   luajit \
   luarocks \
