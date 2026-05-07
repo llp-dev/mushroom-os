@@ -82,6 +82,7 @@ dnf5 install -y \
   mise \
   neovim \
   pandoc \
+  python3-openpyxl \
   ripgrep \
   rustfmt \
   screen \
