@@ -46,6 +46,7 @@ dnf5 install -y \
   python3-pip \
   python3-pyflakes \
   python3-pytest \
+  rclone \
   rust-analyzer \
   rustc \
   temurin-25-jdk
