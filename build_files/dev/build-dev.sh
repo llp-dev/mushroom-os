@@ -84,11 +84,6 @@ dnf5 install -y \
   pandoc \
   python3-openpyxl \
   ripgrep \
-  rustfmt \
-  rust-std-static.i686 \
-  rust-std-static.x86_64 \
-  rust-std-static-x86_64-unknown-none.x86_64 \
-  rust-std-static-x86_64-unknown-uefi.x86_64 \
   screen \
   ShellCheck \
   starship \

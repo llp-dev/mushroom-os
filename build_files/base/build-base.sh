@@ -27,7 +27,6 @@ dnf5 install -y @virtualization
 # Foundational toolchain + language runtimes (LTS / rarely change).
 dnf5 install -y \
   black \
-  cargo \
   clang \
   clang-tools-extra \
   gcc \
@@ -48,8 +47,6 @@ dnf5 install -y \
   python3-pyflakes \
   python3-pytest \
   rclone \
-  rust-analyzer \
-  rustc \
   temurin-25-jdk
 
 ### NVIDIA driver
