@@ -35,6 +35,7 @@ dnf5 install -y \
   gnome-tweaks \
   golang \
   gopls \
+  grub2-tools-extra \
   jq \
   libstdc++-docs \
   libstdc++-static \
@@ -47,7 +48,8 @@ dnf5 install -y \
   python3-pyflakes \
   python3-pytest \
   rclone \
-  temurin-25-jdk
+  temurin-25-jdk \
+  xorriso
 
 ### NVIDIA driver
 NVIDIA_VERSION=$(< /akmods-out/nvidia-version)
