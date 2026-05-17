@@ -58,6 +58,7 @@ dnf5 install -y \
   bat \
   btop \
   compat-lua \
+  cpp-check \
   fd-find \
   fontconfig-devel \
   fzf \
