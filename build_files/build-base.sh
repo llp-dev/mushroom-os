@@ -191,7 +191,6 @@ install_packages() {
 	[[ -e "${nvidia_kmod_rpms[0]}" ]]
 
 	dnf5 install -y \
-		--setopt=install_weak_deps=False \
 		--exclude='kmod-nvidia*' \
 		--exclude='akmod-nvidia*' \
 		@virtualization \
