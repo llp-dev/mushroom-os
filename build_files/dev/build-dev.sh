@@ -90,6 +90,7 @@ dnf5 install -y \
   starship \
   stow \
   unzip \
+  valgrind \
   wl-clipboard \
   zip \
   zsh
