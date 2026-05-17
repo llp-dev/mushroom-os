@@ -8,8 +8,10 @@ signed with cosign (`cosign.pub`). Consumed via `bootc switch`.
 
 GNOME desktop on Fedora 44 Silverblue with NVIDIA support
 (`kmod-nvidia-open` compiled from upstream against the base's exact
-kernel) plus a dev-focused package set. The full package list lives in
-`build_files/build.sh`.
+kernel) plus a dev-focused package set. The package lists live in
+`build_files/build-base.sh`.
+Rust is intentionally left to the user session for a `rustup` managed
+toolchain.
 
 ## Install
 

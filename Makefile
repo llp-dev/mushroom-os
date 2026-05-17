@@ -2,6 +2,9 @@ SHELL := /bin/bash
 
 IMAGE_NAME ?= mushroom-os
 DEFAULT_TAG ?= latest
+FEDORA_VERSION ?= 44
+NVIDIA_VERSION ?= 595.58.03
+K6_VERSION ?= 1.7.1
 
 .DEFAULT_GOAL := help
 
@@ -12,11 +15,12 @@ help:  ## Show this help
 	      $(MAKEFILE_LIST)
 
 .PHONY: build
-build:  ## Build the container image (override IMAGE_NAME, DEFAULT_TAG)
-	@build_args=(); \
-	if [ -z "$$(git status -s)" ]; then \
-	  build_args+=(--build-arg "SHA_HEAD_SHORT=$$(git rev-parse --short HEAD)"); \
-	fi; \
+build:  ## Build the container image
+	@build_args=( \
+	  --build-arg "FEDORA_VERSION=$(FEDORA_VERSION)" \
+	  --build-arg "NVIDIA_VERSION=$(NVIDIA_VERSION)" \
+	  --build-arg "K6_VERSION=$(K6_VERSION)" \
+	); \
 	podman build "$${build_args[@]}" --pull=newer \
 	  --tag "$(IMAGE_NAME):$(DEFAULT_TAG)" .
 
