@@ -16,6 +16,11 @@ readonly -a COPR_REPOS=(
 )
 
 readonly -a SYSTEM_PACKAGES=(
+	clevis
+	clevis-pin-pkcs11
+	clevis-pin-tpm2
+	clevis-pin-trustee
+	clevis-systemd
 	glx-utils
 	gnome-tweaks
 	grub2-tools-extra
