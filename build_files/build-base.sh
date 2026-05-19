@@ -124,11 +124,25 @@ readonly -a LUA_PACKAGES=(
 
 readonly -a PYTHON_PACKAGES=(
 	black
+	python3-click
 	python3-isort
+	python3-lxml
+	python3-numpy
 	python3-openpyxl
+	python3-pandas
+	python3-pdfminer
+	python3-pikepdf
 	python3-pip
+	python3-PyMuPDF
+	python3-pypdf
 	python3-pyflakes
 	python3-pytest
+	python3-pyyaml
+	python3-reportlab
+	python3-requests
+	python3-rich
+	python3-tomlkit
+	python3-tqdm
 )
 
 readonly -a RUST_PACKAGES=()
