@@ -21,6 +21,8 @@ readonly -a SYSTEM_PACKAGES=(
   clevis-pin-tpm2
   clevis-pin-trustee
   clevis-systemd
+  fuse
+  fuse3
   fuse-libs
   glx-utils
   gnome-tweaks
