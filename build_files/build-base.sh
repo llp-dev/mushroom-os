@@ -127,19 +127,24 @@ readonly -a LUA_PACKAGES=(
 
 readonly -a PYTHON_PACKAGES=(
   black
+  python3-PyMuPDF
   python3-click
+  python3-fastmcp
   python3-isort
   python3-lxml
   python3-numpy
+  python3-openapi-pydantic
   python3-openpyxl
   python3-pandas
   python3-pdfminer
   python3-pexpect
   python3-pikepdf
   python3-pip
-  python3-PyMuPDF
-  python3-pypdf
+  python3-pydantic-core
+  python3-pydantic-extra-types
+  python3-pydantic-settings
   python3-pyflakes
+  python3-pypdf
   python3-pytest
   python3-pyyaml
   python3-reportlab
