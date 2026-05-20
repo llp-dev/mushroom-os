@@ -54,6 +54,7 @@ readonly -a CLI_PACKAGES=(
   mise
   neovim
   pandoc
+  patch
   ripgrep
   screen
   ShellCheck
