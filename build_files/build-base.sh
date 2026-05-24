@@ -43,7 +43,6 @@ readonly -a CLI_PACKAGES=(
   fd-find
   fzf
   gh
-  git
   git-delta
   google-chrome-stable
   htop
@@ -54,47 +53,32 @@ readonly -a CLI_PACKAGES=(
   mise
   neovim
   pandoc
-  patch
   ripgrep
   screen
   ShellCheck
   starship
   stow
   tokei
-  unzip
   wl-clipboard
   zip
   zsh
 )
 
 readonly -a C_PACKAGES=(
-  autoconf
-  automake
   bear
-  binutils
-  bison
-  ccache
-  cmake
   dtc
-  flex
-  gcc
-  gdb
-  ltrace
-  make
+  glibc-devel.i686
+  libstdc++-devel.i686
   meson
   ncurses-devel
   ninja-build
   openssl-devel
-  perf
   pkgconf-pkg-config
-  strace
-  valgrind
 )
 
 readonly -a CPP_PACKAGES=(
   clang
   clang-tools-extra
-  gcc-c++
   cppcheck
   fontconfig-devel
   glslang
@@ -107,7 +91,6 @@ readonly -a CPP_PACKAGES=(
   libXrender-devel
   libstdc++-docs
   libstdc++-static
-  libtool
   lld
   lldb
   mold
@@ -219,9 +202,14 @@ install_packages() {
   nvidia_kmod_rpms=(/akmods-out/RPMS/mushroom-kmod-nvidia-open-*.rpm)
   [[ -e "${nvidia_kmod_rpms[0]}" ]]
 
+  dnf5 group install -y c-development --with-optional
+  dnf5 group install -y container-management --with-optional
+
   dnf5 install -y \
     --exclude='kmod-nvidia*' \
     --exclude='akmod-nvidia*' \
+    @development-tools \
+    @python-classroom \
     @virtualization \
     "${SYSTEM_PACKAGES[@]}" \
     "${CLI_PACKAGES[@]}" \
