@@ -72,14 +72,19 @@ readonly -a C_PACKAGES=(
   automake
   bear
   binutils
+  bison
   ccache
   cmake
+  dtc
+  flex
   gcc
   gdb
   ltrace
   make
   meson
+  ncurses-devel
   ninja-build
+  openssl-devel
   perf
   pkgconf-pkg-config
   strace
