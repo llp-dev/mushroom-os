@@ -66,6 +66,7 @@ readonly -a CLI_PACKAGES=(
 
 readonly -a C_PACKAGES=(
   bear
+  binutils.i686
   dtc
   glibc-devel.i686
   libstdc++-devel.i686
