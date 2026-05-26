@@ -78,8 +78,20 @@ readonly -a C_PACKAGES=(
 )
 
 readonly -a CPP_PACKAGES=(
-  clang
-  clang-tools-extra
+  clang19-analyzer.x86_64
+  clang19-devel.x86_64
+  clang19-libs.x86_64
+  clang19-resource-filesystem.x86_64
+  clang19-tools-extra-devel.x86_64
+  clang19-tools-extra.x86_64
+  clang19.x86_64
+  clang21-analyzer.x86_64
+  clang21-devel.x86_64
+  clang21-libs.x86_64
+  clang21-resource-filesystem.x86_64
+  clang21-tools-extra-devel.x86_64
+  clang21-tools-extra.x86_64
+  clang21.x86_64
   cppcheck
   fontconfig-devel
   glslang
