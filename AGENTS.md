@@ -15,8 +15,8 @@ There is no application source tree or conventional test suite.
 
 ## Build, Test, and Development Commands
 
-- `make build`: builds the image with Podman using `FEDORA_VERSION`, `NVIDIA_VERSION`, and `K6_VERSION`.
-- `make build FEDORA_VERSION=44 NVIDIA_VERSION=595.58.03 K6_VERSION=1.7.1`: build with explicit version overrides.
+- `make build`: builds the image with Podman using `FEDORA_VERSION` and `NVIDIA_VERSION`.
+- `make build FEDORA_VERSION=44 NVIDIA_VERSION=595.58.03`: build with explicit version overrides.
 - `make lint`: runs ShellCheck on all shell scripts.
 - `make format`: runs `shfmt --write` on all shell scripts.
 

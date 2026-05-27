@@ -2,12 +2,9 @@
 
 set -Eeuo pipefail
 
-readonly K6_VERSION="${1:?k6 version required as positional arg}"
 FEDORA_RELEASE="$(rpm -E %fedora)"
 NEXT_FEDORA_RELEASE=$((FEDORA_RELEASE + 1))
 readonly FEDORA_RELEASE NEXT_FEDORA_RELEASE
-
-readonly K6_RPM_URL="https://github.com/grafana/k6/releases/download/v${K6_VERSION}/k6-v${K6_VERSION}-linux-amd64.rpm"
 
 readonly -a COPR_REPOS=(
   jdxcode/mise
@@ -140,11 +137,8 @@ readonly -a JAVA_PACKAGES=(
   temurin-25-jdk
 )
 
-readonly -a GO_PACKAGES=(
-  golang
-  gopls
-  "${K6_RPM_URL}"
-)
+# Go and k6 are managed per-project through mise, not baked into the image.
+readonly -a GO_PACKAGES=()
 
 readonly -a LUA_PACKAGES=(
   compat-lua
@@ -166,15 +160,12 @@ readonly -a PYTHON_PACKAGES=(
   python3-openapi-pydantic
   python3-openpyxl
   python3-pandas
-  python3-pdfminer
   python3-pexpect
-  python3-pikepdf
   python3-pip
   python3-pydantic-core
   python3-pydantic-extra-types
   python3-pydantic-settings
   python3-pyflakes
-  python3-pypdf
   python3-pytest
   python3-pyyaml
   python3-reportlab

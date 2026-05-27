@@ -4,7 +4,6 @@ IMAGE_NAME ?= mushroom-os
 DEFAULT_TAG ?= latest
 FEDORA_VERSION ?= 44
 NVIDIA_VERSION ?= 595.58.03
-K6_VERSION ?= 1.7.1
 
 .DEFAULT_GOAL := help
 
@@ -19,7 +18,6 @@ build:  ## Build the container image
 	@build_args=( \
 	  --build-arg "FEDORA_VERSION=$(FEDORA_VERSION)" \
 	  --build-arg "NVIDIA_VERSION=$(NVIDIA_VERSION)" \
-	  --build-arg "K6_VERSION=$(K6_VERSION)" \
 	); \
 	podman build "$${build_args[@]}" --pull=newer \
 	  --tag "$(IMAGE_NAME):$(DEFAULT_TAG)" .
