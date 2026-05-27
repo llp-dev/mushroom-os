@@ -40,6 +40,7 @@ readonly -a CLI_PACKAGES=(
   7zip
   bat
   btop
+  emacs
   fd-find
   fzf
   gh
