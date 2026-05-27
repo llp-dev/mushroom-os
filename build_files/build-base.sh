@@ -114,12 +114,12 @@ readonly -a C_PACKAGES=(
 )
 
 readonly -a CPP_PACKAGES=(
-  clang21
-  clang21-analyzer
-  clang21-libs
-  clang21-resource-filesystem
-  clang21-tools-extra
-  compiler-rt21
+  clang
+  clang-analyzer
+  clang-libs
+  clang-resource-filesystem
+  clang-tools-extra
+  compiler-rt
   cppcheck
   fontconfig-devel
   glslang
