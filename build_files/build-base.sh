@@ -114,11 +114,12 @@ readonly -a C_PACKAGES=(
 )
 
 readonly -a CPP_PACKAGES=(
-  clang21-analyzer.x86_64
-  clang21-libs.x86_64
-  clang21-resource-filesystem.x86_64
-  clang21-tools-extra.x86_64
-  clang21.x86_64
+  clang21
+  clang21-analyzer
+  clang21-libs
+  clang21-resource-filesystem
+  clang21-tools-extra
+  compiler-rt21
   cppcheck
   fontconfig-devel
   glslang
@@ -247,6 +248,7 @@ install_packages() {
   [[ -e "${nvidia_kmod_rpms[0]}" ]]
 
   dnf5 install -y \
+    --setopt=install_weak_deps=False \
     --exclude='kmod-nvidia*' \
     --exclude='akmod-nvidia*' \
     "${SYSTEM_PACKAGES[@]}" \
@@ -306,7 +308,6 @@ EOF
 configure_services() {
   systemctl mask bootc-fetch-apply-updates.timer
   systemctl enable podman.socket
-  systemctl enable libvirtd
   systemctl enable nvidia-powerd.service
   systemctl enable nvidia-persistenced.service
 }
