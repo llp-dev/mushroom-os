@@ -263,7 +263,6 @@ install_packages() {
     "${nvidia_kmod_rpms[@]}" \
     "xorg-x11-drv-nvidia-${nvidia_version}-*" \
     "xorg-x11-drv-nvidia-power-${nvidia_version}-*" \
-    "xorg-x11-drv-nvidia-cuda-libs-${nvidia_version}-*" \
     "nvidia-modprobe-${nvidia_version}-*" \
     "nvidia-persistenced-${nvidia_version}-*" \
     "nvidia-settings-${nvidia_version}-*"
