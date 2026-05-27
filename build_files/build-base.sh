@@ -27,11 +27,22 @@ readonly -a SYSTEM_PACKAGES=(
   glx-utils
   gnome-tweaks
   grub2-tools-extra
-  podman-compose
-  podman-docker
   ptyxis
   rclone
   xorriso
+)
+
+readonly -a CONTAINER_PACKAGES=(
+  buildah
+  podman
+  podman-compose
+  podman-docker
+  skopeo
+  toolbox
+)
+
+readonly -a VIRT_PACKAGES=(
+  qemu-kvm
 )
 
 readonly -a CLI_PACKAGES=(
@@ -46,7 +57,6 @@ readonly -a CLI_PACKAGES=(
   gh
   git-delta
   google-chrome-stable
-  htop
   hyperfine
   jq
   lazygit
@@ -65,23 +75,48 @@ readonly -a CLI_PACKAGES=(
 )
 
 readonly -a C_PACKAGES=(
+  autoconf
+  automake
   bear
+  binutils
+  bison
+  ccache
+  cmake
+  cscope
+  ctags
+  diffstat
+  doxygen
   dtc
+  elfutils
+  flex
+  gcc
+  gcc-c++
+  gdb
+  gettext
+  git
+  glibc-devel
   glibc-devel.i686
+  indent
   libstdc++-devel.i686
+  libtool
+  ltrace
+  make
   meson
   ncurses-devel
   ninja-build
   openssl-devel
+  patch
+  patchutils
+  perf
   pkgconf-pkg-config
+  strace
+  valgrind
 )
 
 readonly -a CPP_PACKAGES=(
   clang21-analyzer.x86_64
-  clang21-devel.x86_64
   clang21-libs.x86_64
   clang21-resource-filesystem.x86_64
-  clang21-tools-extra-devel.x86_64
   clang21-tools-extra.x86_64
   clang21.x86_64
   cppcheck
@@ -94,7 +129,6 @@ readonly -a CPP_PACKAGES=(
   libXft-devel
   libXinerama-devel
   libXrender-devel
-  libstdc++-docs
   libstdc++-static
   lld
   lldb
@@ -122,9 +156,11 @@ readonly -a PYTHON_PACKAGES=(
   black
   python3-PyMuPDF
   python3-click
+  python3-devel
   python3-fastmcp
   python3-isort
   python3-lxml
+  python3-mypy
   python3-numpy
   python3-openapi-pydantic
   python3-openpyxl
@@ -145,6 +181,9 @@ readonly -a PYTHON_PACKAGES=(
   python3-rich
   python3-tomlkit
   python3-tqdm
+  ruff
+  tox
+  uv
 )
 
 readonly -a RUST_PACKAGES=()
@@ -207,16 +246,12 @@ install_packages() {
   nvidia_kmod_rpms=(/akmods-out/RPMS/mushroom-kmod-nvidia-open-*.rpm)
   [[ -e "${nvidia_kmod_rpms[0]}" ]]
 
-  dnf5 group install -y c-development --with-optional
-  dnf5 group install -y container-management --with-optional
-
   dnf5 install -y \
     --exclude='kmod-nvidia*' \
     --exclude='akmod-nvidia*' \
-    @development-tools \
-    @python-classroom \
-    @virtualization \
     "${SYSTEM_PACKAGES[@]}" \
+    "${CONTAINER_PACKAGES[@]}" \
+    "${VIRT_PACKAGES[@]}" \
     "${CLI_PACKAGES[@]}" \
     "${C_PACKAGES[@]}" \
     "${CPP_PACKAGES[@]}" \
