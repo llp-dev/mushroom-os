@@ -58,7 +58,6 @@ readonly -a CLI_PACKAGES=(
   screen
   ShellCheck
   starship
-  stow
   tokei
   wl-clipboard
   zip
@@ -67,7 +66,6 @@ readonly -a CLI_PACKAGES=(
 
 readonly -a C_PACKAGES=(
   bear
-  binutils.i686
   dtc
   glibc-devel.i686
   libstdc++-devel.i686
@@ -79,13 +77,6 @@ readonly -a C_PACKAGES=(
 )
 
 readonly -a CPP_PACKAGES=(
-  clang19-analyzer.x86_64
-  clang19-devel.x86_64
-  clang19-libs.x86_64
-  clang19-resource-filesystem.x86_64
-  clang19-tools-extra-devel.x86_64
-  clang19-tools-extra.x86_64
-  clang19.x86_64
   clang21-analyzer.x86_64
   clang21-devel.x86_64
   clang21-libs.x86_64
