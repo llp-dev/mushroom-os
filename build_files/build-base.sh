@@ -140,8 +140,11 @@ readonly -a JAVA_PACKAGES=(
   temurin-25-jdk
 )
 
-# Go and k6 are managed per-project through mise, not baked into the image.
-readonly -a GO_PACKAGES=()
+# Go toolchain stays on the image; k6 is managed per-project through mise.
+readonly -a GO_PACKAGES=(
+  golang
+  gopls
+)
 
 readonly -a LUA_PACKAGES=(
   compat-lua
