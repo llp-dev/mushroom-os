@@ -160,6 +160,7 @@ readonly -a PYTHON_PACKAGES=(
   python3-devel
   python3-fastmcp
   python3-isort
+  python3-lsp-server
   python3-lxml
   python3-mypy
   python3-numpy
