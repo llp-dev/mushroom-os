@@ -46,6 +46,7 @@ readonly -a CLI_PACKAGES=(
   1password
   1password-cli
   7zip
+  ansible-core
   bat
   btop
   emacs
@@ -60,10 +61,12 @@ readonly -a CLI_PACKAGES=(
   markdown
   mise
   neovim
+  opentofu
   pandoc
   ripgrep
   screen
   ShellCheck
+  shfmt
   starship
   tokei
   wl-clipboard
