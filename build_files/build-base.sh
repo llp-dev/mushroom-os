@@ -9,6 +9,7 @@ readonly FEDORA_RELEASE NEXT_FEDORA_RELEASE
 readonly -a COPR_REPOS=(
   jdxcode/mise
   atim/starship
+  atim/lazydocker
   dejan/lazygit
 )
 
@@ -57,6 +58,7 @@ readonly -a CLI_PACKAGES=(
   google-chrome-stable
   hyperfine
   jq
+  lazydocker
   lazygit
   markdown
   mise
@@ -69,6 +71,7 @@ readonly -a CLI_PACKAGES=(
   shfmt
   starship
   tokei
+  tree-sitter-cli
   wl-clipboard
   zip
   zsh
