@@ -50,6 +50,7 @@ readonly -a CLI_PACKAGES=(
   ansible-core
   bat
   btop
+  copr-cli
   emacs
   fd-find
   fzf
