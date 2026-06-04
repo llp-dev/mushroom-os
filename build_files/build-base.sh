@@ -278,6 +278,10 @@ configure_nvidia_boot() {
   install -Dm0644 /dev/stdin /etc/modprobe.d/nvidia.conf <<'EOF'
 blacklist nouveau
 options nvidia-drm modeset=1 fbdev=1
+# Keep the dGPU powered instead of dropping to D3cold runtime suspend. On
+# laptops the external display outputs are wired to the dGPU; waking it from
+# D3cold on hotplug hard-freezes the open kernel modules under Wayland.
+options nvidia NVreg_DynamicPowerManagement=0x00
 EOF
 
   install -Dm0644 /dev/stdin /etc/dracut.conf.d/99-nvidia.conf <<'EOF'
@@ -311,6 +315,11 @@ configure_services() {
   systemctl enable podman.socket
   systemctl enable nvidia-powerd.service
   systemctl enable nvidia-persistenced.service
+  # From xorg-x11-drv-nvidia-power: preserve video memory across power
+  # transitions so suspend/resume and GPU power changes don't corrupt state.
+  systemctl enable nvidia-suspend.service
+  systemctl enable nvidia-resume.service
+  systemctl enable nvidia-hibernate.service
 }
 
 verify_onepassword_browser_support() {
