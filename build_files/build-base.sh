@@ -51,6 +51,7 @@ readonly -a CLI_PACKAGES=(
   bat
   btop
   copr-cli
+  direnv
   emacs
   fd-find
   fzf
@@ -71,6 +72,7 @@ readonly -a CLI_PACKAGES=(
   ShellCheck
   shfmt
   starship
+  tidy
   tokei
   tree-sitter-cli
   wl-clipboard
