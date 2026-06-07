@@ -43,6 +43,11 @@ readonly -a VIRT_PACKAGES=(
   qemu-kvm
 )
 
+readonly -a MEDIA_PACKAGES=(
+  vlc
+  vlc-plugins-all
+)
+
 readonly -a CLI_PACKAGES=(
   1password
   1password-cli
@@ -261,6 +266,7 @@ install_packages() {
     "${SYSTEM_PACKAGES[@]}" \
     "${CONTAINER_PACKAGES[@]}" \
     "${VIRT_PACKAGES[@]}" \
+    "${MEDIA_PACKAGES[@]}" \
     "${CLI_PACKAGES[@]}" \
     "${C_PACKAGES[@]}" \
     "${CPP_PACKAGES[@]}" \
