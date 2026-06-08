@@ -7,7 +7,8 @@ KERNEL_RELEASE="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' kernel-core)"
 FEDORA_RELEASE="$(rpm -E %fedora)"
 readonly KERNEL_RELEASE FEDORA_RELEASE
 
-readonly SRC_DIR=/tmp/open-gpu-kernel-modules
+readonly RUN_FILE=/tmp/nvidia.run
+readonly SRC_DIR=/tmp/nvidia-installer
 readonly STAGING_DIR=/tmp/staging
 readonly RPMBUILD_DIR=/tmp/rpmbuild
 readonly OUT_DIR=/out
@@ -16,9 +17,9 @@ readonly -a BUILD_PACKAGES=(
 	"kernel-devel-${KERNEL_RELEASE}"
 	gcc
 	gcc-c++
-	git
 	make
 	rpm-build
+	xz
 )
 
 readonly -a NVIDIA_MODULES=(
@@ -41,10 +42,16 @@ install_build_dependencies() {
 }
 
 build_modules() {
-	git clone --depth=1 --branch "$NVIDIA_VERSION" \
-		https://github.com/NVIDIA/open-gpu-kernel-modules.git "$SRC_DIR"
+	# The proprietary kernel modules are built from the official .run
+	# installer's kernel/ tree: a precompiled binary core (nv-kernel.o_binary)
+	# plus GPL kernel-interface glue compiled against our exact kernel. This is
+	# the proprietary analogue of cloning open-gpu-kernel-modules; kernel-open/
+	# in the same tree is what the open build used instead.
+	curl -fsSL -o "$RUN_FILE" \
+		"https://us.download.nvidia.com/XFree86/Linux-x86_64/${NVIDIA_VERSION}/NVIDIA-Linux-x86_64-${NVIDIA_VERSION}.run"
+	sh "$RUN_FILE" --extract-only --target "$SRC_DIR"
 
-	make -C "$SRC_DIR" modules \
+	make -C "${SRC_DIR}/kernel" modules \
 		SYSSRC="/usr/src/kernels/${KERNEL_RELEASE}" \
 		-j"$(nproc)"
 }
@@ -82,26 +89,29 @@ write_rpm_spec() {
 		"${RPMBUILD_DIR}/RPMS" \
 		"${RPMBUILD_DIR}/SRPMS"
 
-	install -Dm0644 /dev/stdin "${RPMBUILD_DIR}/SPECS/mushroom-kmod-nvidia-open.spec" <<EOF
-Name:           mushroom-kmod-nvidia-open
+	install -Dm0644 /dev/stdin "${RPMBUILD_DIR}/SPECS/mushroom-kmod-nvidia.spec" <<EOF
+Name:           mushroom-kmod-nvidia
 Version:        ${NVIDIA_VERSION}
 Release:        1.fc${FEDORA_RELEASE}
-Summary:        NVIDIA open-source kernel modules built from upstream for ${KERNEL_RELEASE}
-License:        MIT AND GPL-2.0-only
+Summary:        NVIDIA proprietary kernel modules built from upstream for ${KERNEL_RELEASE}
+License:        Redistributable, no modification permitted
 BuildArch:      x86_64
 
 Epoch:          3
 Provides:       nvidia-kmod = %{epoch}:%{version}
 Provides:       nvidia-kmod-common = %{epoch}:%{version}
-Provides:       kmod-nvidia-open = %{epoch}:%{version}-%{release}
-Provides:       kmod-nvidia-open-${KERNEL_RELEASE} = %{epoch}:%{version}-%{release}
+Provides:       kmod-nvidia = %{epoch}:%{version}-%{release}
+Provides:       kmod-nvidia-${KERNEL_RELEASE} = %{epoch}:%{version}-%{release}
 
 Requires:       kernel-core-uname-r = ${KERNEL_RELEASE}
 
 %description
-NVIDIA open-source kernel modules built from upstream tag %{version}
-against ${KERNEL_RELEASE}. The package provides the kmod capabilities
-required by RPM Fusion's NVIDIA userspace RPMs.
+NVIDIA proprietary kernel modules built from upstream installer %{version}
+against ${KERNEL_RELEASE}. The open kernel modules mishandle the BAR1
+plane-fence semaphore allocation on Turing dGPUs without Resizable BAR,
+crashing external-display hotplug; the proprietary modules avoid it. The
+package provides the kmod capabilities required by RPM Fusion's NVIDIA
+userspace RPMs.
 
 %install
 cp -a ${STAGING_DIR}/* %{buildroot}/
@@ -123,10 +133,10 @@ EOF
 
 package_modules() {
 	rpmbuild -bb --define "_topdir ${RPMBUILD_DIR}" \
-		"${RPMBUILD_DIR}/SPECS/mushroom-kmod-nvidia-open.spec"
+		"${RPMBUILD_DIR}/SPECS/mushroom-kmod-nvidia.spec"
 
 	mkdir -p "${OUT_DIR}/RPMS"
-	cp "${RPMBUILD_DIR}"/RPMS/x86_64/mushroom-kmod-nvidia-open-*.rpm "${OUT_DIR}/RPMS/"
+	cp "${RPMBUILD_DIR}"/RPMS/x86_64/mushroom-kmod-nvidia-*.rpm "${OUT_DIR}/RPMS/"
 	ls -la "${OUT_DIR}/RPMS/"
 }
 

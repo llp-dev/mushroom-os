@@ -256,7 +256,7 @@ install_packages() {
   local nvidia_version
   local -a nvidia_kmod_rpms
   nvidia_version="$(</akmods-out/nvidia-version)"
-  nvidia_kmod_rpms=(/akmods-out/RPMS/mushroom-kmod-nvidia-open-*.rpm)
+  nvidia_kmod_rpms=(/akmods-out/RPMS/mushroom-kmod-nvidia-*.rpm)
   [[ -e "${nvidia_kmod_rpms[0]}" ]]
 
   dnf5 install -y \
@@ -282,7 +282,7 @@ install_packages() {
     "nvidia-persistenced-${nvidia_version}-*" \
     "nvidia-settings-${nvidia_version}-*"
 
-  rpm -q "mushroom-kmod-nvidia-open-${nvidia_version}" >/dev/null
+  rpm -q "mushroom-kmod-nvidia-${nvidia_version}" >/dev/null
   rpm -q "xorg-x11-drv-nvidia-${nvidia_version}" >/dev/null
 }
 
@@ -292,7 +292,7 @@ blacklist nouveau
 options nvidia-drm modeset=1 fbdev=1
 # Keep the dGPU powered instead of dropping to D3cold runtime suspend. On
 # laptops the external display outputs are wired to the dGPU; waking it from
-# D3cold on hotplug hard-freezes the open kernel modules under Wayland.
+# D3cold on hotplug hard-freezes the NVIDIA kernel modules under Wayland.
 options nvidia NVreg_DynamicPowerManagement=0x00
 EOF
 

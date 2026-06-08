@@ -7,9 +7,11 @@ signed with cosign (`cosign.pub`). Consumed via `bootc switch`.
 ## What it is
 
 GNOME desktop on Fedora 44 Silverblue with NVIDIA support
-(`kmod-nvidia-open` compiled from upstream against the base's exact
-kernel) plus a dev-focused package set. The package lists live in
-`build_files/build-base.sh`.
+(`kmod-nvidia`, the proprietary modules, compiled from NVIDIA's upstream
+installer against the base's exact kernel) plus a dev-focused package set.
+The package lists live in `build_files/build-base.sh`. The proprietary
+modules are used over the open ones because the open modules crash
+external-display hotplug on Turing dGPUs that lack Resizable BAR.
 Rust is intentionally left to the user session for a `rustup` managed
 toolchain.
 
