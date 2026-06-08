@@ -15,6 +15,7 @@ readonly OUT_DIR=/out
 
 readonly -a BUILD_PACKAGES=(
 	"kernel-devel-${KERNEL_RELEASE}"
+	dwarves
 	gcc
 	gcc-c++
 	make
