@@ -44,7 +44,6 @@ install_build_dependencies() {
 build_module() {
 	akmods --force --kernels "${KERNEL_RELEASE}" --kmod wl
 
-	# Confirm the built module is tagged for our exact kernel before staging.
 	local ko
 	ko="$(find "/usr/lib/modules/${KERNEL_RELEASE}" -name 'wl.ko*' -print -quit || true)"
 	[[ -n "$ko" ]] || {

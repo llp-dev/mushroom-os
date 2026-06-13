@@ -161,7 +161,6 @@ readonly -a JAVA_PACKAGES=(
   temurin-25-jdk
 )
 
-# Go toolchain + common tooling on the image; k6 stays user-level via mise.
 readonly -a GO_PACKAGES=(
   delve
   golang
