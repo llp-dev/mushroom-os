@@ -14,6 +14,8 @@ readonly -a COPR_REPOS=(
 )
 
 readonly -a SYSTEM_PACKAGES=(
+  cascadia-code-nf-fonts
+  cascadia-mono-nf-fonts
   clevis
   clevis-pin-pkcs11
   clevis-pin-tpm2
@@ -25,8 +27,10 @@ readonly -a SYSTEM_PACKAGES=(
   glx-utils
   gnome-tweaks
   grub2-tools-extra
+  openssh-askpass
   ptyxis
   rclone
+  steam-devices
   xorriso
 )
 
@@ -44,6 +48,12 @@ readonly -a VIRT_PACKAGES=(
 )
 
 readonly -a MEDIA_PACKAGES=(
+  ffmpeg
+  gstreamer1-plugins-bad-free-extras
+  gstreamer1-plugins-bad-freeworld
+  gstreamer1-plugins-ugly
+  gstreamer1-vaapi
+  intel-media-driver
   vlc
   vlc-plugins-all
 )
@@ -259,10 +269,21 @@ install_packages() {
   nvidia_kmod_rpms=(/akmods-out/RPMS/mushroom-kmod-nvidia-*.rpm)
   [[ -e "${nvidia_kmod_rpms[0]}" ]]
 
+  # Prebuilt Broadcom wl module from the akmods-wl stage. broadcom-wl pulls in
+  # the firmware and the in-tree-driver blacklist; the kmod-wl RPM satisfies
+  # its module dependency so akmod-wl never has to rebuild on the live system.
+  local wl_kver
+  local -a wl_kmod_rpms
+  wl_kver="$(</akmods-wl-out/wl-kver)"
+  wl_kmod_rpms=(/akmods-wl-out/RPMS/kmod-wl-*.rpm)
+  [[ -e "${wl_kmod_rpms[0]}" ]]
+
   dnf5 install -y \
     --setopt=install_weak_deps=False \
+    --allowerasing \
     --exclude='kmod-nvidia*' \
     --exclude='akmod-nvidia*' \
+    --exclude='akmod-wl' \
     "${SYSTEM_PACKAGES[@]}" \
     "${CONTAINER_PACKAGES[@]}" \
     "${VIRT_PACKAGES[@]}" \
@@ -280,10 +301,13 @@ install_packages() {
     "xorg-x11-drv-nvidia-power-${nvidia_version}-*" \
     "nvidia-modprobe-${nvidia_version}-*" \
     "nvidia-persistenced-${nvidia_version}-*" \
-    "nvidia-settings-${nvidia_version}-*"
+    "nvidia-settings-${nvidia_version}-*" \
+    "${wl_kmod_rpms[@]}" \
+    broadcom-wl
 
   rpm -q "mushroom-kmod-nvidia-${nvidia_version}" >/dev/null
   rpm -q "xorg-x11-drv-nvidia-${nvidia_version}" >/dev/null
+  rpm -q "kmod-wl-${wl_kver}" >/dev/null
 }
 
 configure_nvidia_boot() {
