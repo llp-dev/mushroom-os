@@ -14,7 +14,6 @@ readonly OUT_DIR=/out
 # baked in as a versioned kmod-wl RPM instead.
 readonly -a BUILD_PACKAGES=(
 	"kernel-devel-${KERNEL_RELEASE}"
-	akmod-wl
 	akmods
 	gcc
 	make
@@ -35,6 +34,11 @@ install_repositories() {
 install_build_dependencies() {
 	dnf5 install -y --setopt=install_weak_deps=False "${BUILD_PACKAGES[@]}"
 	rpm -q "kernel-devel-${KERNEL_RELEASE}" >/dev/null
+
+	# akmod-wl's %post fails (it refuses to build as root); the package still
+	# installs and we rebuild it via akmods below, so tolerate the exit code.
+	dnf5 install -y --setopt=install_weak_deps=False akmod-wl || true
+	rpm -q akmod-wl >/dev/null
 }
 
 build_module() {

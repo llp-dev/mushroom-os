@@ -172,6 +172,7 @@ readonly -a GO_PACKAGES=(
 
 readonly -a LUA_PACKAGES=(
   compat-lua
+  love
   lua
   luajit
   luarocks
