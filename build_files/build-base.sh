@@ -135,6 +135,7 @@ readonly -a C_PACKAGES=(
 )
 
 readonly -a CPP_PACKAGES=(
+  cairo-devel
   clang
   clang-analyzer
   clang-libs
@@ -142,8 +143,11 @@ readonly -a CPP_PACKAGES=(
   clang-tools-extra
   compiler-rt
   cppcheck
+  dbus-devel
   fontconfig-devel
+  freetype-devel
   glslang
+  gtk3-devel
   libX11-devel
   libXcursor-devel
   libXext-devel
@@ -151,10 +155,20 @@ readonly -a CPP_PACKAGES=(
   libXft-devel
   libXinerama-devel
   libXrender-devel
+  libdecor-devel
   libstdc++-static
+  libxkbcommon-devel
   lld
   lldb
+  mesa-libEGL-devel
+  mesa-libGL-devel
+  mesa-libGLES-devel
+  mesa-libGLU-devel
+  mesa-libgbm-devel
   mold
+  pango-devel
+  wayland-devel
+  wayland-protocols-devel
 )
 
 readonly -a JAVA_PACKAGES=(
