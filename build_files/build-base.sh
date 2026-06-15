@@ -116,9 +116,8 @@ readonly -a C_PACKAGES=(
   gettext
   git
   glibc-devel
-  glibc-devel.i686
   indent
-  libstdc++-devel.i686
+  libstdc++-devel
   libtool
   ltrace
   make
