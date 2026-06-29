@@ -217,6 +217,7 @@ readonly -a PYTHON_PACKAGES=(
   python3-reportlab
   python3-requests
   python3-rich
+  python3-tkinter
   python3-tomlkit
   python3-tqdm
   ruff
