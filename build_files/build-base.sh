@@ -154,8 +154,11 @@ readonly -a CPP_PACKAGES=(
   libXext-devel
   libXfixes-devel
   libXft-devel
+  libXi-devel
   libXinerama-devel
+  libXrandr-devel
   libXrender-devel
+  libXxf86vm-devel
   libdecor-devel
   libstdc++-static
   libxkbcommon-devel
