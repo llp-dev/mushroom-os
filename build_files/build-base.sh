@@ -45,6 +45,7 @@ readonly -a CONTAINER_PACKAGES=(
 
 readonly -a VIRT_PACKAGES=(
   qemu-kvm
+  vagrant
 )
 
 readonly -a MEDIA_PACKAGES=(
