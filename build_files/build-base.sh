@@ -62,6 +62,7 @@ readonly -a MEDIA_PACKAGES=(
 readonly -a CLI_PACKAGES=(
   1password
   1password-cli
+  brave-browser
   7zip
   ansible-core
   bat
@@ -258,6 +259,15 @@ baseurl=https://dl.google.com/linux/chrome/rpm/stable/$basearch
 enabled=1
 gpgcheck=1
 gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+EOF
+
+  install -Dm0644 /dev/stdin /etc/yum.repos.d/brave-browser.repo <<'EOF'
+[brave-browser]
+name=Brave Browser
+baseurl=https://brave-browser-rpm-release.s3.brave.com/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 EOF
 
   local repo
