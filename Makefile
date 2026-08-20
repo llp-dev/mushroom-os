@@ -3,7 +3,7 @@ SHELL := /bin/bash
 IMAGE_NAME ?= mushroom-os
 DEFAULT_TAG ?= latest
 FEDORA_VERSION ?= 44
-NVIDIA_VERSION ?= 595.58.03
+NVIDIA_VERSION ?= 610.57.04
 
 .DEFAULT_GOAL := help
 
