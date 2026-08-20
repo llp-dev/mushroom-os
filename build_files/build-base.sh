@@ -327,6 +327,7 @@ install_packages() {
     "${RUST_PACKAGES[@]}" \
     "${nvidia_kmod_rpms[@]}" \
     "xorg-x11-drv-nvidia-${nvidia_version}-*" \
+    "xorg-x11-drv-nvidia-libs-${nvidia_version}-*.i686" \
     "xorg-x11-drv-nvidia-power-${nvidia_version}-*" \
     "nvidia-modprobe-${nvidia_version}-*" \
     "nvidia-persistenced-${nvidia_version}-*" \
@@ -336,6 +337,8 @@ install_packages() {
 
   rpm -q "mushroom-kmod-nvidia-${nvidia_version}" >/dev/null
   rpm -q "xorg-x11-drv-nvidia-${nvidia_version}" >/dev/null
+  # Steam's runtime and 32-bit games need the i686 driver libs for GL/Vulkan.
+  rpm -q "xorg-x11-drv-nvidia-libs-${nvidia_version}" --qf '%{ARCH}\n' | grep -qx i686
   rpm -q "kmod-wl-${wl_kver}" >/dev/null
 }
 
