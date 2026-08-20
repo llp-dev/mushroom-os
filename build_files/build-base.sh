@@ -30,6 +30,7 @@ readonly -a SYSTEM_PACKAGES=(
   openssh-askpass
   ptyxis
   rclone
+  steam
   steam-devices
   xorriso
 )
